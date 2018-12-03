@@ -1,0 +1,120 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'org.jetbrains.kotlin.android.extensions'
+
+android {
+    def androidConfig = rootProject.ext.androidConfig
+    compileSdkVersion androidConfig.compileSdkVersion
+    buildToolsVersion androidConfig.buildToolsVersion
+
+    defaultConfig {
+        applicationId androidConfig.androidConfig
+        minSdkVersion androidConfig.minSdkVersion
+        targetSdkVersion androidConfig.targetSdkVersion
+        versionCode androidConfig.versionCode
+        versionName androidConfig.versionName
+        testInstrumentationRunner androidConfig.junitRunner
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "BASE_URL", "\"http://192.168.1.161:8901/\""
+        }
+
+        debug {
+            buildConfigField "String", "BASE_URL", "\"http://192.168.1.161:8901/\""
+        }
+    }
+
+    // 防止编译的时候oom、GC
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+    // 解决.9图问题
+    aaptOptions {
+        cruncherEnabled = false
+        useNewCruncher = false
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+}
+
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    def dep = rootProject.ext.dependencies
+    api dep.appcompat
+    testImplementation dep.junit
+    androidTestImplementation dep.runner
+    androidTestImplementation dep.espresso
+
+    api dep.autoSize
+
+    /**
+     * 引用一些基本配置
+     * baseQuickRecyclerAdapter,smartRefreshLayout等
+     */
+    api dep.recycleview
+    api dep.material
+    api dep.cardview
+    api dep.constraintLayout
+    api 'androidx.multidex:multidex:2.0.0'
+
+    api dep.recycleview
+    api dep.baseQuickRecyclerViewAdapter
+    api dep.smartRefreshLayout
+
+    api dep.glide
+
+    api dep.vLayout
+
+    api dep.gson
+
+    api dep.retrofit
+    api dep.okHttpInterceptor
+    api dep.rxJavaAdapter
+    api dep.gsonAdapter
+
+    api dep.rxAndroid
+    api dep.rxJava
+    api dep.rxBinding
+    api dep.rxBindingKotlin
+    api dep.rxPermission
+
+    api dep.immersionBar
+
+    api dep.rxToolKit
+
+    implementation dep.dagger
+    kapt dep.daggerAnnotationProcessor
+    implementation dep.daggerAndroid
+    implementation dep.daggerAndroidSupport
+    kapt dep.daggerAndroidProcessor
+
+    api dep.stringAdapter
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+//    api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    implementation dep.logger
+
+    implementation project(":Skeleton")
+}

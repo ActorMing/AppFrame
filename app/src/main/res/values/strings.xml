@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">AppFrame</string>
+
+    <string name="text_user_name">User Name</string>
+    <string name="text_user_password">Password</string>
+    <string name="text_user_name_helper">Please input user name</string>
+    <string name="text_register_tips">Not account yet? Create one</string>
+    <string name="text_forget_password">Forget password?</string>
+    <string name="text_login">Login</string>
+    <string name="text_register">Register</string>
+    <string name="text_confirm_password">Confirm password</string>
+    <string name="text_developing">Developing…</string>
+    <string name="text_loading">Loading…</string>
+    <string name="text_no_data">No more data.</string>
+    <string name="text_theme_switcher">Theme Switcher</string>
+    <string name="text_cancel">Cancel</string>
+    <string name="text_sure">Ok</string>
+    <string name="text_save">Save</string>
+    <string name="text_unknown_error">Unknown error</string>
+    <string name="text_network_not_available">Network not available</string>
+    <string name="text_address_not_reachable">Address not reachable</string>
+    <string name="text_network_timeout">Network connect timeout</string>
+
+    <string name="text_token_expired">This action needs login, please login first</string>
+    <string name="text_user_name_empty">User name cannot empty</string>
+    <string name="text_password_empty">Password cannot empty</string>
+    <string name="text_password_too_short">Password length must greater than 6</string>
+    <string name="text_confirm_password_must_same">Two passwords must same</string>
+
+    <string name="text_on_login">Login…</string>
+
+</resources>
